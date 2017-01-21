@@ -8,15 +8,16 @@ public class Signup extends AbstractPersistable<Long> {
 
     private String name;
     private String address;
+    private String owner;
 
     public Signup() {
         super();
     }
 
-    public Signup(String name, String address) {
-        this();
+    public Signup(String name, String address, String owner) {
         this.name = name;
         this.address = address;
+        this.owner = owner;
     }
 
     public String getName() {
@@ -35,4 +36,8 @@ public class Signup extends AbstractPersistable<Long> {
         this.address = address;
     }
 
+    public String getOwner()
+    {
+        return owner;
+    }
 }

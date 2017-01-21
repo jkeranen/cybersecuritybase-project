@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Thank you!</title>
+        <title>Registered users</title>
+        <meta charset="UTF-8" />
     </head>
     <body>
-        <h3>Thank you ! You have signed up following person to the event!</h3>
-        <p th:each="signup : ${signup}">
+
+        <h3>Sign up information</h3>
+
+        <ol>
+            <li th:each="signup : ${signups}">
                 <strong>Name: </strong><span th:text="${signup.name}">name</span>
                 <strong>Address: </strong><span th:text="${signup.address}">address</span>
-        </p>
-        <table >
+            </li>
+        </ol>
+        <table>
             <tr>
-                <th>
-                    <form th:action="@{/mysignups}" method="get">
-                        <input type="submit" value="Show all sign ups"/>
-                    </form>
-                </th>
                 <th>
                     <form th:action="@{/form}" method="get">
                         <input type="submit" value="New sign up"/>

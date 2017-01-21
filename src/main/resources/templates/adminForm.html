@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Search form</title>
+    </head>
+    <body>
+
+        <h3>Search sign ups by owner</h3>
+
+        <form  name="adminForm" action="#" th:action="@{/signups}" onsubmit="return validateAdminForm()" method="post">
+            <p><label for="owner">Owner</label>: <input type="text" name="owner" id="owner"/></p>
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Log out"/>
+        </form>
+        <ol>
+            <li th:each="signup : ${signups}">
+                <strong>Name: </strong><span th:text="${signup.name}">name</span>
+                <strong>Address: </strong><span th:text="${signup.address}">address</span>
+            </li>
+        </ol>
+        <script th:src="@{/javascript/code.js}"></script>
+    </body>
+</html>

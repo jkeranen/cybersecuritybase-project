@@ -7,7 +7,7 @@
 
         <h3>Search sign ups by owner</h3>
 
-        <form  name="adminForm" action="#" th:action="@{/signups}" onsubmit="return validateAdminForm()" method="post">
+        <form  name="adminForm" action="#" th:action="@{/adminForm}" onsubmit="return validateAdminForm()" method="post">
             <p><label for="owner">Owner</label>: <input type="text" name="owner" id="owner"/></p>
             <p><input type="submit" value="Submit" /></p>
         </form>

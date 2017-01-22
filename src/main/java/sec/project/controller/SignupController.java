@@ -54,15 +54,6 @@ public class SignupController {
 
     /*
      * @todo A4-Insecure Direct Object References
-     * @todo Any authorized system user can access adminForm by giving correct path
-     */
-    @RequestMapping(value = "/adminForm", method = RequestMethod.GET)
-    public String loadAdminForm() {
-        return "adminForm";
-    }
-
-    /*
-     * @todo A4-Insecure Direct Object References
      * @todo Any authorized system user can easily access other user data by changing owner parameter value
      */
     @RequestMapping(value = "/signups/{owner}", method = RequestMethod.GET)
@@ -70,6 +61,16 @@ public class SignupController {
         model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
         return "signups";
     }
+    /*
+    public String getSignupData(Authentication authentication, Model model, @PathVariable String owner) {
+        if (authentication.isAuthenticated() && authentication.getName().equals(owner)) {
+            model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
+            return "signups";
+        } else {
+            return "redirect:/form";
+        }
+    }
+    */
 
     @RequestMapping(value = "/mysignups", method = RequestMethod.GET)
     public String getSignupOwner(Authentication authentication, Model model) {
@@ -77,9 +78,44 @@ public class SignupController {
         return "redirect:/signups/" + account.getUsername();
     }
 
-    @RequestMapping(value = "/signups", method = RequestMethod.POST)
+    /*
+     * @todo 2013-A7-Missing Function Level Access Control
+     * @todo Any authorized system user can access adminForm by giving correct path
+     */
+    @RequestMapping(value = "/adminForm", method = RequestMethod.GET)
+    public String loadAdminForm() {
+        return "adminForm";
+    }
+    /*
+    public String loadAdminForm(Authentication authentication) {
+        Account account = accountRepository.findByUsername(authentication.getName());
+        if (authentication.isAuthenticated() && account.getRole().equals("ROLE_ADMIN")) {
+            return "adminForm";
+        } else {
+            return "redirect:/form";
+        }
+    }
+    */
+
+    /*
+     * @todo 2013-A7-Missing Function Level Access Control
+     * @todo Any authorized system user can access adminForm by giving correct path
+     */
+    @RequestMapping(value = "/adminForm", method = RequestMethod.POST)
     public String getSignups(Model model, @RequestParam String owner) {
         model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
         return "adminForm";
     }
+    /*
+    public String getSignups(Authentication authentication, Model model, @RequestParam String owner) {
+        Account account = accountRepository.findByUsername(authentication.getName());
+        if (authentication.isAuthenticated() && account.getRole().equals("ROLE_ADMIN")) {
+            model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
+            return "adminForm";
+        } else {
+            return "redirect:/form";
+        }
+    }
+    */
+
 }

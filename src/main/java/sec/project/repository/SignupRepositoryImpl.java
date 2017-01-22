@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 public class SignupRepositoryImpl implements SignupRepositoryCustom {
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     @Override
     public List<Signup> findByOwner(String owner) {
@@ -19,8 +19,13 @@ public class SignupRepositoryImpl implements SignupRepositoryCustom {
          * @todo A1-Injection.
          * @todo Untrusted data can be sent as part of a query
          */
+        /*
         TypedQuery<Signup> query =
-                em.createQuery("SELECT s FROM Signup s WHERE s.owner = '"+owner+"'", Signup.class);
+                entityManager.createQuery("SELECT s FROM Signup s WHERE s.owner = :owner", Signup.class);
+        query.setParameter("owner", owner);
+        */
+        TypedQuery<Signup> query =
+                entityManager.createQuery("SELECT s FROM Signup s WHERE s.owner = '"+owner+"'", Signup.class);
         return query.getResultList();
     }
 }

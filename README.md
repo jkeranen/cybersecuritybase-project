@@ -1,7 +1,5 @@
 # Cyber Security Base - Course Project I 
 
-NOTE! Only four vulnerabilities implemented
- 
 **Task:**
 - Create a web application that has at least five different flaws from the OWASP top ten list 
   https://www.owasp.org/index.php/Top_10_2013-Top_10 

@@ -40,7 +40,7 @@ Text-based attack scripts that exploit the interpreter in the browser can be sen
 2. Login with the following credentials: username: *bob*; password: *marley*.
 3. On Signup page (/form) enter following signup info 
 Name : *ziggy* 
-Address: *<img src="http://localhost:8080/" onerror="alert(document.cookie);" />* 
+Address: *`<img src="http://localhost:8080/" onerror="alert(document.cookie);" />`* 
 and press Submit.
 4. A dialog with session id is shown to you.
 ### Fix

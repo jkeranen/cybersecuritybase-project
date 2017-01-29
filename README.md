@@ -10,8 +10,10 @@ NOTE! Only four vulnerabilities implemented
 
 Following flaws has been implemented into the application:
 - 2013-A1-Injection
+- 2013-A3-Cross-Site Scripting (XSS)
 - 2013-A4-Insecure Direct Object References
 - 2013-A7-Missing Function Level Access Control
+- 2013-A10-Unvalidated Redirects and Forwards
 
 ## 2013-A1-Injection
 Untrusted data can be sent as part of a query.

@@ -31,6 +31,30 @@ Use parametrized query instead of directly adding the parameter to the query str
                 entityManager.createQuery("SELECT s FROM Signup s WHERE s.owner = :owner", Signup.class);
         query.setParameter("owner", owner);
 
+## 2013-A3-Cross-Site Scripting (XSS)
+Text-based attack scripts that exploit the interpreter in the browser can be sent to application
+### Identification
+1. Open browser and go to address *http://localhost:8080* (you'll be redirected to *http://localhost:8080/login*).
+2. Login with the following credentials: username: *bob*; password: *marley*.
+3. On Signup page (/form) enter following signup info 
+Name : *ziggy* 
+Address: *<img src="http://localhost:8080/" onerror="alert(document.cookie);" />* 
+and press Submit.
+4. A dialog with session id is shown to you.
+### Fix
+Remove javascript from done.html and replace the first code snippet with the latter one 
+
+        <p>
+            <strong>Name: </strong><span id="signupName"></span>
+            <strong>Address: </strong><span id="signupAddress"></span>
+        </p>
+ 
+        <p>
+            <strong>Name: </strong><span th:text="${signup.name}">name</span>
+            <strong>Address: </strong><span th:text="${signup.address}">address</span>
+        </p>
+
+
 ## 2013-A4-Insecure Direct Object References
 Any authorized system user can easily access other user data by changing owner parameter value
 ### Identification

@@ -5,9 +5,9 @@
     </head>
     <body>
         <h3 th:inline="text">Thank you [[${#httpServletRequest.remoteUser}]]! You have signed up following person to the event!</h3>
-        <p th:each="signup : ${signup}">
-                <strong>Name: </strong><span th:text="${signup.name}">name</span>
-                <strong>Address: </strong><span th:text="${signup.address}">address</span>
+        <p>
+            <strong>Name: </strong><span id="signupName"></span>
+            <strong>Address: </strong><span id="signupAddress"></span>
         </p>
         <table>
             <tr>
@@ -28,5 +28,16 @@
                 </th>
             </tr>
         </table>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+                // @todo 2013-A3-Cross-Site Scripting (XSS)
+                // @todo Text-based attack scripts that exploit the interpreter in the browser can be sent to application
+                var name = [[${signup.name}]];
+                document.getElementById("signupName").innerHTML = name;
+                var address = [[${signup.address}]];
+                document.getElementById("signupAddress").innerHTML = address;
+
+            /*]]>*/
+        </script>
     </body>
 </html>

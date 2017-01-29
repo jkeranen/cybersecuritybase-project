@@ -19,13 +19,14 @@ public class SignupRepositoryImpl implements SignupRepositoryCustom {
          * @todo A1-Injection.
          * @todo Untrusted data can be sent as part of a query
          */
-        /*
-        TypedQuery<Signup> query =
-                entityManager.createQuery("SELECT s FROM Signup s WHERE s.owner = :owner", Signup.class);
-        query.setParameter("owner", owner);
-        */
         TypedQuery<Signup> query =
                 entityManager.createQuery("SELECT s FROM Signup s WHERE s.owner = '"+owner+"'", Signup.class);
         return query.getResultList();
+        /* FIX
+        TypedQuery<Signup> query =
+                entityManager.createQuery("SELECT s FROM Signup s WHERE s.owner = :owner", Signup.class);
+        query.setParameter("owner", owner);
+        return query.getResultList();
+        */
     }
 }

@@ -22,8 +22,9 @@
                     </form>
                 </th>
                 <th>
-                    <form th:action="@{/logout}" method="post">
+                    <form th:action="@{/signout}" method="get">
                         <input type="submit" value="Log out"/>
+                        <input type="hidden" name="url" value="logout"/>
                     </form>
                 </th>
             </tr>

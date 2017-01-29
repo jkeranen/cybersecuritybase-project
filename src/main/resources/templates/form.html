@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
     <head>
         <title>Sign up form</title>
     </head>
-    <body>
+    <body onload='document.signupForm.name.focus();'>
 
+        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
         <h3>Sign up to the event using this form</h3>
-
         <form name="signupForm" action="#" th:action="@{/form}" onsubmit="return validateForm()" method="post">
             <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
             <p><label for="address">Address</label>: <input type="text" name="address" id="address"/></p>
             <p><input type="submit" value="Submit" /></p>
         </form>
-        <script th:src="@{/javascript/code.js}"></script>
+        <table>
+            <tr>
+                <th>
+                    <form th:action="@{/mysignups}" method="get">
+                        <input type="submit" value="Show my sign ups"/>
+                    </form>
+                </th>
+                <th>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Log out"/>
+                    </form>
+                </th>
+            </tr>
+        </table>
+            <script th:src="@{/javascript/code.js}"></script>
     </body>
 </html>

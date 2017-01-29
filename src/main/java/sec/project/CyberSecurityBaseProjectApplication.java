@@ -31,8 +31,6 @@ public class CyberSecurityBaseProjectApplication implements EmbeddedServletConta
             public void customize(Context context)
             {
                 context.setUseHttpOnly(false);
-                //Manager man = context.getManager();
-                //man.setSessionIdGenerator(new PredictableSessionGenerator());
             }
         });
     }

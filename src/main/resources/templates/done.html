@@ -4,12 +4,12 @@
         <title>Thank you!</title>
     </head>
     <body>
-        <h3>Thank you ! You have signed up following person to the event!</h3>
+        <h3 th:inline="text">Thank you [[${#httpServletRequest.remoteUser}]]! You have signed up following person to the event!</h3>
         <p th:each="signup : ${signup}">
                 <strong>Name: </strong><span th:text="${signup.name}">name</span>
                 <strong>Address: </strong><span th:text="${signup.address}">address</span>
         </p>
-        <table >
+        <table>
             <tr>
                 <th>
                     <form th:action="@{/form}" method="get">
@@ -18,7 +18,7 @@
                 </th>
                 <th>
                     <form th:action="@{/mysignups}" method="get">
-                        <input type="submit" value="Show all sign ups"/>
+                        <input type="submit" value="Show my sign ups"/>
                     </form>
                 </th>
                 <th>

@@ -61,7 +61,7 @@ public class SignupController {
         model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
         return "signups";
     }
-    /*
+    /* FIX
     public String getSignupData(Authentication authentication, Model model, @PathVariable String owner) {
         if (authentication.isAuthenticated() && authentication.getName().equals(owner)) {
             model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
@@ -71,7 +71,6 @@ public class SignupController {
         }
     }
     */
-
     @RequestMapping(value = "/mysignups", method = RequestMethod.GET)
     public String getSignupOwner(Authentication authentication, Model model) {
         Account account = accountRepository.findByUsername(authentication.getName());
@@ -86,7 +85,7 @@ public class SignupController {
     public String loadAdminForm() {
         return "adminForm";
     }
-    /*
+    /* FIX
     public String loadAdminForm(Authentication authentication) {
         Account account = accountRepository.findByUsername(authentication.getName());
         if (authentication.isAuthenticated() && account.getRole().equals("ROLE_ADMIN")) {
@@ -106,7 +105,7 @@ public class SignupController {
         model.addAttribute("signups", signupRepositoryCustom.findByOwner(owner));
         return "adminForm";
     }
-    /*
+    /* FIX
     public String getSignups(Authentication authentication, Model model, @RequestParam String owner) {
         Account account = accountRepository.findByUsername(authentication.getName());
         if (authentication.isAuthenticated() && account.getRole().equals("ROLE_ADMIN")) {
@@ -118,4 +117,17 @@ public class SignupController {
     }
     */
 
+    /*
+     * @todo 2013-A10-Unvalidated Redirects and Forwards
+     * @todo User can be redirected to any URL
+     */
+    @RequestMapping(value = "/signout", method = RequestMethod.GET)
+    public String signout(@RequestParam String url) {
+        return "redirect:" + url;
+    }
+    /* FIX
+    public String signout() {
+        return "redirect:/logout";
+    }
+    */
 }
